@@ -1,2 +1,5 @@
 res://OnlineMenu.tscn
 res://Chatroom.tscn
+res://OnlineMenu.gd
+res://Global/Network.gd
+res://Chatroom.gd
