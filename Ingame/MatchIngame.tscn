@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddmm7kh3jndg6"]
+
+[ext_resource type="Script" path="res://Ingame/MatchIngame.gd" id="1_3heis"]
+[ext_resource type="Script" path="res://Ingame/PlayerList.gd" id="2_fkp6r"]
+[ext_resource type="Script" path="res://Ingame/DrawPile.gd" id="3_tt3b6"]
+[ext_resource type="Script" path="res://Ingame/PlayedPile.gd" id="4_lmc7c"]
+[ext_resource type="Script" path="res://Ingame/MatchStateMachine.gd" id="5_0k6p4"]
+[ext_resource type="Script" path="res://Ingame/MatchEventListener.gd" id="6_qujvo"]
+
+[node name="MatchIngame" type="Node2D"]
+script = ExtResource("1_3heis")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -33.0
+offset_right = 20.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Start"
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Play"
+
+[node name="PlayerList" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+size_flags_horizontal = 0
+bbcode_enabled = true
+text = "Helloooo"
+script = ExtResource("2_fkp6r")
+
+[node name="DrawPile" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_tt3b6")
+
+[node name="PlayedPile" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_lmc7c")
+
+[node name="MatchStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_0k6p4")
+
+[node name="MatchEventListener" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_qujvo")

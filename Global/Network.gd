@@ -7,6 +7,7 @@ signal userListNeedsUpdate()
 
 var username: String = "Chatter"
 var userColor: String = "Red"
+var userId: int = -1
 
 var userList: Dictionary = {}
 
@@ -49,7 +50,7 @@ func hostServer():
 	changeToChatroom()
 
 func changeToChatroom():
-	get_tree().change_scene_to_file("res://Chatroom.tscn")
+	get_tree().change_scene_to_file("res://Ingame/MatchIngame.tscn")
 
 func closeConnection():
 	get_tree().get_multiplayer().multiplayer_peer = null

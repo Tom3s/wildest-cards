@@ -1,10 +1,13 @@
+VBoxContainer
+RichTextLabel
 Button
+CanvasLayer
+Node2D
+Node
 LineEdit
 HBoxContainer
 ItemList
 Panel
-RichTextLabel
-VBoxContainer
 Label
 OptionButton
 SpinBox

@@ -50,6 +50,7 @@ func onJoinButton_pressed():
 
 	statusLabel.text = "STATUS: Connecting to server - " + ipAddress.text
 	Network.username = username.text
+	Network.userId = get_tree().get_multiplayer().get_unique_id()
 
 
 
@@ -59,6 +60,7 @@ func onHostButton_pressed():
 	Network.username = username.text
 
 	var id = get_tree().get_multiplayer().get_unique_id()
+	Network.userId = id
 	Network.userList[str(id)] = Network.username
 
 func onConnectionFailed():

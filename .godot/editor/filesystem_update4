@@ -1,5 +1,15 @@
+res://Global/Network.gd
+res://Chatroom.gd
+res://Ingame/MatchIngame.gd
+res://DrawPile.gd
+res://CardFactory.gd
+res://Ingame/PlayedPile.gd
+res://Ingame/DrawPile.gd
+res://MatchIngame.tscn
 res://OnlineMenu.tscn
 res://Chatroom.tscn
 res://OnlineMenu.gd
-res://Global/Network.gd
-res://Chatroom.gd
+res://Ingame/MatchStateMachine.gd
+res://Ingame/MatchEventListener.gd
+res://Ingame/PlayerList.gd
+res://Ingame/MatchIngame.tscn

@@ -33,3 +33,45 @@ make a UNO game, where bunch of different house rules and special edition rules 
 - cards may have multiple numbers, and can be played on any of those numbers
 - wild cards can be played on any card, but may only change to a color it shows
 - there are more than 4 colors
+
+## Turn steps
+
+- In case player has penalties:
+  - Check if player has any cards that can avoid, or pass the penalty
+	- if player cannot avoid, or pass the penalty, next player starts turn
+- current player starts turn
+- check if player has any cards that can be played
+  - if player has no cards that can be played, player draws a card
+  - if player has cards that can be played, 
+    - player plays a card OR
+    - player draws a card
+- if player has selected a special card, prompt user for:
+  - color (if applicable)
+  - player (if applicable)
+  - number (if applicable)
+- if player has a signle card left, user must press "last card" button, before next player acts
+- if player is in a combo (ie, same player has the turn again), he must always play a card
+  - if player has no cards that can be played, player draws a card
+- if player has no cards left, player wins
+  
+
+## Card Properties
+
+- color(s)
+- number(s)/type
+
+- colors it can go on (can be black for any)
+- numbers it can go on 
+- types it can go on (can be any)
+
+- can prompt for color
+- can prompt for player
+- can prompt for number
+- can prompt for type
+
+- can put penalty on player
+  - draw x
+  - skip
+  - swap some or all cards
+- can apply global effect
+  - reverse
