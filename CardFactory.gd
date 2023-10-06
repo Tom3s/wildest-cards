@@ -23,7 +23,7 @@ const WILD_SPECIALS = [
 ]
 
 static func getNewDeck() -> Array[String]:
-	var deck = []
+	var deck: Array[String] = []
 	for color in COLORS:
 		for value in range(MIN_VALUE, MAX_VALUE + 1):
 			deck.append(color + '/' + str(value))

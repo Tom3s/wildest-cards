@@ -7,7 +7,10 @@ class_name MatchEventListener
 
 @onready var state: MatchStateMachine = %MatchStateMachine
 
+@onready var drawPile: DrawPile = %DrawPile
+@onready var hand: ItemList = %Hand
 
+const STARTING_CARDS = 7
 
 func setup():
 	playButton.disabled = true
@@ -43,9 +46,11 @@ func setPlayerListForAll() -> void:
 func onNetwork_userListNeedsUpdate():
 	state.playerIds.clear()
 	state.playerNames.clear()
+	state.playerCards.clear()
 	for userId in Network.userList:
 		state.playerIds.append(userId.to_int())
 		state.playerNames.append(Network.userList[userId])
+		state.playerCards.append([] as Array[String])
 	
 	print('[MatchEventListener.gd] User list updated.')
 
@@ -57,19 +62,39 @@ func onUserLeftServer(id: int):
 
 func startGame():
 	print('[MatchEventListener.gd] Starting game.')
-	state.currentPlayerIndex = 0
-	setPlayerListForAll()
-	setPlayButtonEnabled()
-	rpc("initClients")
+	# state.currentPlayerIndex = 0
+	# setPlayerListForAll()
+	# setPlayButtonEnabled()
+	var initDeck := drawPile.reset()
+	var jsonInitDeck := JSON.stringify(initDeck)
+	rpc("initClients", jsonInitDeck)
 
-@rpc("call_remote", "reliable")
-func initClients():
+@rpc("call_local", "reliable")
+func initClients(jsonInitDeck: String):
 	print('[MatchEventListener.gd] Initializing clients.')
 	state.currentPlayerIndex = 0
 	setPlayerListForAll()
 	setPlayButtonEnabled()
+	var initDeck: Array[String] # = JSON.parse_string(jsonInitDeck)
+	initDeck.assign(JSON.parse_string(jsonInitDeck))
+	drawPile.setPile(initDeck)
+
+	for i in range(state.playerIds.size()):
+		state.playerCards[i].append_array(await drawPile.drawCards(STARTING_CARDS) as Array[String])
+
+		if state.playerIds[i] == Network.userId:
+			hand.clear()
+			for card in state.playerCards[i]:
+				hand.add_item(card)
 
 @rpc("any_peer", "call_local", "reliable")
 func setPlayButtonEnabled():
 	print('[MatchEventListener.gd] Setting button; current: ', state.currentPlayerIndex, ' my id: ', Network.userId)
 	playButton.disabled = state.playerIds[state.currentPlayerIndex] != Network.userId
+
+@rpc("any_peer", "call_local", "reliable")
+func drawCards(cards: Array[String]):
+	print('[MatchEventListener.gd] Drawing cards: ', cards)
+	state.drawCards(cards)
+	setPlayerListForAll()
+	setPlayButtonEnabled()
