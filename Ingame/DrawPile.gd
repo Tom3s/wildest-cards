@@ -30,3 +30,7 @@ func drawCards(quantity: int = 1) -> Array[String]:
 
 func setPile(initCards: Array[String]) -> void:
 	cards = initCards
+
+func setReshuffled(newCards: Array[String]) -> void:
+	cards = newCards
+	reshuffled.emit()

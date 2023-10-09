@@ -1,3 +1,4 @@
+Label
 ItemList
 VBoxContainer
 RichTextLabel
@@ -8,6 +9,5 @@ Node
 LineEdit
 HBoxContainer
 Panel
-Label
 OptionButton
 SpinBox
